@@ -1,0 +1,18 @@
+<div class="list" (dragover)="allowDrop($event)" (drop)="drop($event)">
+        <h2 class="list__title">{{taskList.title}}</h2>
+        <div class="tasks">
+             <!-- [card]="cardStore.getCard(cardId)" -->
+                <!-- <app-card *ngFor="let card of taskList.tasks"></app-card>> -->
+                <table>
+                    <tbody>
+                        <pm-task *ngFor="let t of taskList.tasks" [task]="t"></pm-task>
+                           <!-- <p> {{  task.title }} </p>
+                           <p> {{  task.description }} </p> -->
+                   
+                        <!-- <tr *ngFor="let task of taskList.tasks">
+                            <pm-task></pm-task>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+</div>
