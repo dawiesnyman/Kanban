@@ -10,42 +10,48 @@ import { ITaskList } from '../models/taskList';
 export class ListComponent implements OnInit{
     @Input()  taskList: ITaskList;
     title: string = "Title";
+    displayAddCard = false;
 
     ngOnInit(): void {
         console.log('On Init');          
     }
 
+    toggleDisplayAddCard() {
+        this.displayAddCard = ! this.displayAddCard;
+    }
+
     allowDrop($event) {
-        $event.preventDefault();
-        const data = $event.dataTransfer.getData('text');
-        //console.log('data');
-        //console.log(data);
-
-        let target = $event.target;
-        const targetClassName = target.className;
-        console.log(targetClassName);
-
-         while( target.className !== 'list') {
-             target = target.parentNode;
-         }
-        
-         target = target.querySelector('.tasks');
-         console.log(target);
-        
-         if(targetClassName === 'task') { //if task
-             //$event.target.parentNode.insertBefore(document.getElementById(data), $event.target);
-           } else if(targetClassName === 'list__title') { //if title
-             if (target.children.length) {
-               //target.insertBefore(document.getElementById(data), target.children[0]);
-             }else {
-               target.appendChild(document.getElementById(data));
-             }
-           } else { //
-             //target.appendChild(document.getElementById(data));
-           }
+        $event.preventDefault(); 
     }
 
     drop($event) {
-        console.log("drop");
+        $event.preventDefault();
+        const taskId = $event.dataTransfer.getData('taskID');
+    
+        let target = $event.target;
+        const targetClassName = target.className;
+        console.log($event.target);
+
+        while( target.className !== 'taskList') {
+            target = target.parentNode;
+        }
+
+        target = target.querySelector('.tasks');
+     
+        if(targetClassName === 'task') { //if card
+            $event.target.parentNode.insertBefore(document.getElementById(taskId), $event.target);
+        } else if(targetClassName === 'taskListTitle') { //if title
+        if (target.children.length) {
+            target.insertBefore(document.getElementById(taskId), target.children[0]);
+        }else {
+            target.appendChild(document.getElementById(taskId));
+        }
+        } else { //
+            target.appendChild(document.getElementById(taskId));
+        }
     }
+
+    onEnter(value: string) {
+        //this.taskList.tasks.push();
+      }
 }

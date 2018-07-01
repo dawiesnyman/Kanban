@@ -10,12 +10,12 @@ export class TaskComponent{
     @Input()  task: ITask;
 
     dragStart(ev) {
-        ev.dataTransfer.setData('text', ev.target.id); 
-        console.log(ev.target.id);
-        console.log('drag start');
+        ev.dataTransfer.setData('taskID', ev.target.id); 
+        //console.log(ev.target.id);
+        //console.log('drag start');
       }
     
       dragEnd(ev) {
-        console.log('drag end');
+        //console.log('drag end');
       }
 }

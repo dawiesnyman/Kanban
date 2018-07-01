@@ -1,4 +1,4 @@
-.list {
+.taskList {
     background: #e2e4e6;
     width: 258px;
     padding: 6px;
@@ -6,11 +6,11 @@
     display: inline-block;
  
 }
-.list__title {
+.taskListTitle {
     margin: 0;
     padding: 16px 0;
 }
-.list a {
+.taskList    a {
     width: 100%;
     display: block;
     text-decoration: none;

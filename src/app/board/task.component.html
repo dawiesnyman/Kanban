@@ -1,6 +1,4 @@
-<div class='task' draggable="true" >
-<!--     
-</div> class="card" draggable="true" (dragstart)="dragStart($event)" id="{{card.id}}" (dragend)="dragEnd($event)"> -->
+<div class='task' draggable="true" (dragstart)="dragStart($event)" id="{{task.id}}" (dragend)="dragEnd($event)">
     <p><strong>{{task.title}}</strong></p>        
     <p> {{task.description}} </p>
     <p> {{task.url}} </p>
