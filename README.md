@@ -1,7 +1,7 @@
-#Kanban Board
+# Kanban Board
 Having a play with angular to build a Kanban Board
 
-# APM
+## APM
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
 
 ## Development server
