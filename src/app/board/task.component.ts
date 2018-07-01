@@ -10,7 +10,8 @@ export class TaskComponent{
     @Input()  task: ITask;
 
     dragStart(ev) {
-        ev.dataTransfer.setData('taskID', ev.target.id); 
+        ev.dataTransfer.setData('taskID', this.task.id); 
+        console.log(this.task.id);
         //console.log(ev.target.id);
         //console.log('drag start');
       }
