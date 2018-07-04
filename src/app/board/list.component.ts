@@ -1,6 +1,9 @@
 import { Component, HostListener, OnInit, Input } from '@angular/core';
 import { ITaskList } from '../models/taskList';
+import { ITask } from '../models/task';
+import { Task } from '../models/task';
 import { TaskService } from '../services/task.service';
+import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
 
 @Component({
     selector: 'pm-list',
@@ -13,6 +16,7 @@ export class ListComponent implements OnInit{
     title: string = "Title";
     displayAddCard = false;
     errorMessage: string = '';
+    task: ITask;
 
     constructor(private _taskService: TaskService){
     }
@@ -36,9 +40,16 @@ export class ListComponent implements OnInit{
 
     drop($event) {
         $event.preventDefault();
-        const taskId = $event.dataTransfer.getData('taskID');
-    
+        //get moving tasks Id
+        const taskId = $event.dataTransfer.getData('taskID');        
         let target = $event.target;
+
+        this._taskService.getTask(taskId)
+        .subscribe(
+            tasks => { this.task = tasks[0]},
+            error => this.errorMessage = <any>error);
+            console.log('task.title');
+            console.log(this.task.title);
 
         if(taskId == 99)
         {

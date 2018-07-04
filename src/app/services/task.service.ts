@@ -16,18 +16,24 @@ export class TaskService{
 
     }
 
+    getTask(id: number): Observable<ITask>{
+        return this._http.get<ITask>(this._recordsUrl)
+        .do(data => console.log('All: ' + JSON.stringify(data)))
+        .catch(this.handleError);
+    }
+
     getTasks(): Observable<ITask[]>{
         return this._http.get<ITask[]>(this._recordsUrl)
         .do(data => console.log('All: ' + JSON.stringify(data)))
         .catch(this.handleError);
     }
     
-    getTasksByListId(): Observable<ITask[]>{
+    getTasksByListId(id: number): Observable<ITask[]>{
         return this._http.get<ITask[]>(this._recordsUrl)
         .do(data => console.log('All: ' + JSON.stringify(data)))
         .catch(this.handleError);
     }
-    
+
     private handleError(err: HttpErrorResponse){
         console.log(err.message);
         return Observable.throw(err.message);
